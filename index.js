@@ -74,5 +74,17 @@ client.on('messageCreate', async (message) => {
   }
 });
 
+client.on('messageCreate', async (message) => {
+// Ignore messages from bots
+  if (message.author.bot) return;
+
+  if (message.content === 'flip') {
+    const flipResult = Math.random() < 0.5 ? 'Heads' : 'Tails';
+    await message.reply({
+      content: `The coin landed on: ${flipResult}!`,
+    });
+  }
+});
+
 // Log in to Discord
 client.login(process.env.TOKEN);
